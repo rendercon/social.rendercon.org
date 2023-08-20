@@ -1,109 +1,231 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useSpring, animated } from "@react-spring/web";
-import { Card } from "@radix-ui/themes";
+import { Avatar, Box, Flex, Text } from "@radix-ui/themes";
+import { useEffect, useState } from "react";
+import { SiVercel } from "react-icons/si";
+import Tilt from "react-parallax-tilt";
 
 type Props = {
-  children: React.ReactNode;
-  backgroundColor: string;
-  direction: string;
-  left?: string;
+  name?: string;
+  username: string;
+  number: number;
+  imageurl: string;
+  email: string;
+  gradient?: string;
 };
 
-const calc = (x: number, y: number): [number, number, number] => [
-  -(y - window.innerHeight / 2) / 360,
-  (x - window.innerWidth / 2) / 240,
-  1.02,
-];
+export default function HoverCard({
+  email,
+  imageurl,
+  name,
+  number,
+  username,
+  gradient,
+}: Props) {
+  const [backgroundGradient, setBackgroundGradient] = useState<string>();
+  const [headingGradient, setHeadingGradient] = useState<string>(
+    "bg-gradient-to-r from-red-200 via-red-300 to-yellow-200"
+  );
+  const [previousGradient, setPreviousGradient] = useState<string | undefined>(
+    gradient
+  );
 
-const trans = (x: number, y: number, s: number): string =>
-  `perspective(900px) rotateX(${-x}deg) rotateY(${-y}deg)`;
+  const [pendingChange, setPendingChange] = useState<string | null>(null);
+  const [debounceTimeout, setDebounceTimeout] = useState<number | null>(null);
 
-const HoverCard: React.FC<Props> = ({
-  children,
-  backgroundColor,
-  direction,
-  left,
-}) => {
-  const [hovered, setIsHovered] = useState(false);
-  const [springProps, set] = useSpring(() => ({
-    xys: [0, 0, 1],
-    config: { mass: 5, tension: 6000, friction: 1000 },
-  }));
+  const changeGradient = (background: string, heading: string) => {
+    // Update the state locally
+    setBackgroundGradient(background);
+    setHeadingGradient(heading);
 
-  const [cursorCoords, setCursorCoords] = useState({ x: 0, y: 0 });
+    // Store the pending change
+    setPendingChange(background);
 
-  useEffect(() => {
-    const handleMousePosition = (event: MouseEvent) => {
-      const { clientX: x, clientY: y } = event;
-      setCursorCoords({ x, y });
-    };
+    // Clear any existing debounce timeout
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+    }
 
-    window.addEventListener("mousemove", handleMousePosition);
+    // Set a new debounce timeout
+    const newDebounceTimeout = setTimeout(() => {
+      setPendingChange(null);
 
-    return () => {
-      window.removeEventListener("mousemove", handleMousePosition);
-    };
-  }, []);
-
-  const calcTranslate = (
-    coordinate: number,
-    containerSize: number,
-    itemSize: number
-  ) => (coordinate / containerSize) * (containerSize - itemSize);
-
-  const translateX =
-    typeof window !== "undefined"
-      ? calcTranslate(cursorCoords.x, window.innerWidth, 600)
-      : 0;
-  const translateY =
-    typeof window !== "undefined"
-      ? calcTranslate(cursorCoords.y, window.innerHeight, 500)
-      : 0;
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const { clientX: x, clientY: y } = event;
-    set({ xys: calc(x, y) });
-    setIsHovered(true);
+      // Send request to backend with the last pending change
+      if (pendingChange !== null) {
+        sendRequestToServer(pendingChange);
+      }
+    }, 100); // Adjust the debounce time as needed
+    // @ts-ignore
+    setDebounceTimeout(newDebounceTimeout);
   };
 
-  const handleMouseLeave = () => {
-    set({ xys: [0, 0, 1] });
-    setIsHovered(false);
+  const sendRequestToServer = async (background: string) => {
+    try {
+      await fetch("/api/update-bg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ backgroundGradient: background }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  // Rest of the component code...
 
   return (
-    <Card asChild color="yellow" className="h-96">
-      <animated.div
-        className="  overflow-hidden  mb-3 md:mb-8 rounded-xl py-5 max-w-[600px]"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{ transform: springProps.xys.to(trans) }}
-      >
-        <div
-          className={`z-[1] relative  h-full    md:flex ${direction} justify-between px-2 sm:px-4 lg:px-8`}
-        >
-          {children}
-          <div
-            className={`absolute  border-none  bottom-[50px]  z-[-1] back ${
-              hovered ? "opacity-95" : "opacity-0"
-            } `}
-            style={{
-              transform: `translateX(${translateX}px) translateY(${
-                2 * translateY
-              }px)`,
-              background: "",
-              borderRadius: "100%",
-              mixBlendMode: "soft-light",
-              left: left,
-              willChange: "transform",
-              transition: "transform 0.2s cubic-bezier",
-            }}
-          ></div>
-        </div>
-      </animated.div>
-    </Card>
-  );
-};
+    <>
+      <section className=" items-center">
+        <div className="sm:px-6 sm:py-6 p-2  ">
+          <Tilt
+            className={`max-w-[600px] w-full lg:w-[600px] p-4 h-80 border border-gray-500 rounded-xl ${gradient}  ${backgroundGradient} `}
+            glareMaxOpacity={0.6}
+            glareBorderRadius="10px"
+            glareEnable={true}
+            glareColor="#385185"
+            glarePosition="all"
+            glareReverse={true}
+          >
+            <Box className="flex flex-col justify-around  h-full py-4 font-krona  ">
+              <Flex align="center" className=" " justify="between">
+                <Box>
+                  <Flex gap="4">
+                    <Avatar
+                      size="3"
+                      src={imageurl}
+                      radius="full"
+                      fallback="T"
+                    />
+                    <Box>
+                      <Text
+                        as="div"
+                        size="2"
+                        weight="bold"
+                        className="
+                    "
+                      >
+                        {name}
+                      </Text>
+                      <Text
+                        as="div"
+                        size="2"
+                        color="gray"
+                        className=" bg-gradient-to-r from-red-200 via-red-300 to-yellow-200  text-transparent bg-clip-text"
+                      >
+                        @ {username}
+                      </Text>
+                    </Box>
+                  </Flex>
+                </Box>
+                <Box>
+                  <Text as="p" size="2" weight="bold" className="text-gray-500">
+                    # {number.toString().padStart(3, "0")}
+                  </Text>
+                </Box>
+              </Flex>
+              <Box className=" bg-opacity-0 flex flex-col items-center   ">
+                <Flex gap="1" justify="center" align="center">
+                  <Text
+                    size="8"
+                    className={`sm:text-4xl  font-bold  text-shadow shadow-purple-400 text-transparent bg-clip-text ${headingGradient} `}
+                  >
+                    RenderCon
+                  </Text>
 
-export default HoverCard;
+                  <Text
+                    as="span"
+                    className=" text-5xl sm:text-5xl  bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent text-shadow-lg shadow-purple-800 font-bold"
+                  >
+                    23
+                  </Text>
+                </Flex>
+                <Flex className="">
+                  <Text
+                    as="p"
+                    weight="light"
+                    className="text-xs font-light bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 text-transparent bg-clip-text"
+                  >
+                    29 - 30 Sept, 2023 • Nairobi, Kenya
+                  </Text>
+                </Flex>
+              </Box>
+              <Box>
+                <Flex justify="between">
+                  <Text
+                    as="p"
+                    weight="light"
+                    className="text-xs  bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 text-transparent bg-clip-text"
+                  >
+                    React Reimagined
+                  </Text>
+                  <Text
+                    as="p"
+                    weight="light"
+                    className="text-xs  bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 text-transparent bg-clip-text  flex items-center gap-2"
+                  >
+                    <span>Powered by</span>{" "}
+                    <SiVercel className="text-white text-xl dark:text-slate-900" />
+                  </Text>
+                </Flex>
+              </Box>
+            </Box>
+          </Tilt>
+        </div>
+      </section>
+      <div className="flex gap-2 mt-4 py-4 bg-opacity-30">
+        <button
+          onClick={() =>
+            changeGradient(
+              "bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black",
+              "bg-gradient-to-r from-blue-200 via-blue-300 to-green-200"
+            )
+          }
+        >
+          NextJs
+        </button>
+        <button
+          onClick={() =>
+            changeGradient(
+              "bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900",
+              "bg-gradient-to-r from-purple-700 via-blue-200 to-purple-400"
+            )
+          }
+        >
+          Gatsby
+        </button>
+        <button
+          onClick={() =>
+            changeGradient(
+              "bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-900 via-purple-800 to-black",
+              "bg-gradient-to-r from-purple-700 via-blue-200 to-purple-400"
+            )
+          }
+        >
+          Vite
+        </button>
+        <button
+          onClick={() =>
+            changeGradient(
+              "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gray-700 via-indigo-900 to-black",
+              "bg-gradient-to-r from-purple-700 via-blue-200 to-purple-400"
+            )
+          }
+        >
+          Remix
+        </button>
+        <button
+          onClick={() =>
+            changeGradient(
+              "bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-gray-700 via-red-900 to-black",
+              "bg-gradient-to-r from-purple-700 via-blue-200 to-purple-400"
+            )
+          }
+        >
+          Astro
+        </button>
+        {/* Add more buttons with different gradients */}
+      </div>
+    </>
+  );
+}
