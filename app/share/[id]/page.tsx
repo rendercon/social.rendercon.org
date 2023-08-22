@@ -32,6 +32,7 @@ export default async function page({ params }: Params) {
         number={user.number}
         username={user.username}
         gradient={userBackgroundGradient}
+        selectedIcon={user.icon!}
       />
     </div>
   );
