@@ -158,7 +158,7 @@ export default function HoverCard({
                           color="gray"
                           className=" bg-gradient-to-r from-red-200 via-red-300 to-yellow-200  text-transparent bg-clip-text"
                         >
-                          @ {username}
+                          @{username}
                         </Text>
                       </Box>
                     </Flex>
@@ -170,7 +170,7 @@ export default function HoverCard({
                       weight="bold"
                       className="text-gray-500"
                     >
-                      # {number.toString().padStart(3, "0")}
+                      # {number.toString().padStart(4, "0")}
                     </Text>
                   </Box>
                 </Flex>
