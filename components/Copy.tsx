@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { AiOutlineShareAlt } from "react-icons/ai";
+import { BiCopy } from "react-icons/bi";
+import { Toaster, toast } from "sonner";
 
 function CopyToClipboard({ textToCopy }: { textToCopy: string }) {
   const copyToClipboard = async () => {
@@ -14,11 +15,15 @@ function CopyToClipboard({ textToCopy }: { textToCopy: string }) {
 
   return (
     <div>
+      <Toaster position="top-center" />
       <button
         className="px-3 py-2.5 bg-gradient-to-r from-indigo-300  to-purple-500 rounded-md inline-flex items-center justify-center  gap-2 outline-none font-semibold font-krona "
-        onClick={copyToClipboard}
+        onClick={() => {
+          copyToClipboard();
+          toast.success("Url Copied to the clipboard share it now! ");
+        }}
       >
-        <AiOutlineShareAlt className="text-2xl" /> Share Ticket
+        copy sharable url <BiCopy />
       </button>
     </div>
   );
