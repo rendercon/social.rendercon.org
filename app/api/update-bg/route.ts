@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   const user = await clerkClient.users.getUser(userId!);
 
   const data = await req.json();
-  const { backgroundGradient } = data;
+  const { backgroundGradient, icon } = data;
 
   console.log(backgroundGradient);
   const currentUser = await prisma.user.findUnique({
@@ -24,8 +24,10 @@ export async function POST(req: Request) {
       },
       data: {
         backgroundGradient: backgroundGradient,
+        icon: icon,
       },
     });
   }
-  return NextResponse.json({ success: true });
+
+  return NextResponse.json(currentUser?.backgroundGradient);
 }

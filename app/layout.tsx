@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import { inter, kronaOne } from "./fonts";
 import "./globals.css";
 
@@ -22,6 +23,7 @@ export default function RootLayout({
             radius="full"
             appearance="dark"
           >
+            <Navbar />
             {children}
           </Theme>
         </body>

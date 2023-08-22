@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 // Please edit this to allow other routes to be public as needed.
 // See https://clerk.com/docs/nextjs/middleware for more information about configuring your middleware
 export default authMiddleware({
-  publicRoutes: ["/"],
+  publicRoutes: ["/", "/share", "/share/:id"],
 });
 
 export const config = {

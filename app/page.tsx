@@ -1,7 +1,8 @@
 import HoverCard from "@/components/HoverCard";
-import { SignInButton, auth, currentUser } from "@clerk/nextjs";
-import { Button, Heading } from "@radix-ui/themes";
+import { SignInButton, currentUser } from "@clerk/nextjs";
+
 import Link from "next/link";
+import { BsArrowRight } from "react-icons/bs";
 import { SiGithub } from "react-icons/si";
 
 export default async function Home() {
@@ -32,10 +33,10 @@ export default async function Home() {
 
           {user && (
             <Link
-              href={`/ticket/${user?.firstName}`}
-              className="px-3 py-2.5 bg-gradient-to-r from-indigo-300  to-purple-500 rounded-md inline-flex items-center justify-center sm:w-44 gap-2 outline-none font-semibold font-krona   "
+              href={`/ticket/${user?.username}`}
+              className="px-3 py-2.5 bg-gradient-to-r from-indigo-300  to-purple-500 rounded-md inline-flex items-center justify-center  gap-2 outline-none font-semibold font-krona  "
             >
-              {user?.firstName}
+              Customize your ticket <BsArrowRight />
             </Link>
           )}
         </div>
