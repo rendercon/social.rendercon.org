@@ -8,8 +8,6 @@ import { SignInButton } from "@clerk/nextjs";
 import { SiGithub } from "react-icons/si";
 import { Metadata } from "next";
 
-export const runtime = "edge";
-
 type Params = {
   params: {
     id: string;

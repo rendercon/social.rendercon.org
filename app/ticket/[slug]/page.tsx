@@ -7,8 +7,6 @@ import { redirect } from "next/navigation";
 import CopyToClipboard from "@/components/Copy";
 import { Metadata } from "next";
 
-export const runtime = "edge";
-
 export async function generateMetadata(): Promise<Metadata> {
   const getCurrentUser = await currentUser();
   const username = getCurrentUser?.username;
