@@ -1,5 +1,5 @@
 "use client";
-import { Avatar, Box, Flex, Heading, Text } from "@radix-ui/themes";
+import { Avatar, Box, Flex, Text } from "@radix-ui/themes";
 import { useEffect, useRef, useState } from "react";
 import {
   SiAstro,
@@ -179,7 +179,7 @@ export default function HoverCard({
                   <Box>
                     <Text
                       as="p"
-                      size="3"
+                      size="2"
                       weight="bold"
                       className="text-neutral-400 font-mono "
                     >

@@ -1,10 +1,9 @@
 import React from "react";
-import { SignOutButton, auth, clerkClient, currentUser } from "@clerk/nextjs";
+import { auth, clerkClient, currentUser } from "@clerk/nextjs";
 import HoverCard from "@/components/HoverCard";
 import { prisma } from "@/prisma/prisma";
-import { Heading } from "@radix-ui/themes";
 import { redirect } from "next/navigation";
-import CopyToClipboard from "@/components/Copy";
+
 import { Metadata } from "next";
 
 export const runtime = "edge";
