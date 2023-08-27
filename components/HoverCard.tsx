@@ -1,6 +1,6 @@
 "use client";
 import { Avatar, Box, Flex, Heading, Text } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   SiAstro,
   SiGatsby,
@@ -11,6 +11,10 @@ import {
 } from "react-icons/si";
 import Tilt from "react-parallax-tilt";
 import GradientButtons from "./GradientButtons";
+import { useRouter } from "next/navigation";
+import { toPng } from "html-to-image";
+import DownloadImage from "./DownloadImage";
+import CopyToClipboard from "./Copy";
 
 type Props = {
   name?: string;
@@ -76,7 +80,7 @@ export default function HoverCard({
 
     // Set a new debounce timeout
     const newDebounceTimeout = setTimeout(() => {
-      setPendingChange(null); // Move this line below the request
+      setPendingChange(null);
 
       // Send request to backend with the last pending change
       if (pendingChange && iconChange) {
@@ -111,14 +115,28 @@ export default function HoverCard({
       console.error(error);
     }
   };
+  const { push } = useRouter();
+
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  const htmlToImageConvert = () => {
+    toPng(imageRef.current!, { cacheBust: false })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = `${username}-RenderCon-Ticket.png`;
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
       <div className="flex flex-col sm:flex-row items-center py-5 sm:gap-44 ">
         <section className=" items-center w-full">
-          {/* @ts-ignore */}
-
-          <div className="sm:px-6 sm:py-6 p-2 w-full  ">
+          <div className="sm:px-6 sm:py-6 p-2 w-full  " ref={imageRef}>
             <Tilt
               className={`max-w-[600px] w-full lg:w-[600px] p-4  h-80 border border-gray-500 rounded-xl   ${backgroundGradient} `}
               glareMaxOpacity={0.6}
@@ -149,14 +167,9 @@ export default function HoverCard({
                           {name}
                         </Text>
                         <Text
-                          style={{
-                            backgroundClip: "text",
-                            color: "transparent",
-                          }}
                           as="div"
                           size="2"
-                          color="gray"
-                          className=" bg-gradient-to-r from-red-200 via-red-300 to-yellow-200  text-transparent bg-clip-text"
+                          className="text-shadow shadow-purple-400 text-purple-200"
                         >
                           @{username}
                         </Text>
@@ -166,33 +179,25 @@ export default function HoverCard({
                   <Box>
                     <Text
                       as="p"
-                      size="2"
+                      size="3"
                       weight="bold"
-                      className="text-gray-500"
+                      className="text-neutral-400 font-mono "
                     >
-                      # {number.toString().padStart(4, "0")}
+                      #{number.toString().padStart(4, "0")}
                     </Text>
                   </Box>
                 </Flex>
                 <Box className=" bg-opacity-0 flex flex-col items-center   ">
                   <Flex gap="1" justify="center" align="center">
                     <Text
-                      size="8"
-                      className={`sm:text-4xl  font-bold  text-shadow shadow-purple-400 text-transparent bg-clip-text ${headingGradient} `}
+                      className={`sm:text-4xl  font-bold  text-shadow shadow-purple-400 text-purple-200  text-3xl `}
                     >
                       RenderCon
                     </Text>
 
                     <Text
-                      style={{
-                        backgroundImage:
-                          " linear-gradient(to right, var(--tw-gradient-stops))",
-                        backgroundClip: "text",
-                        color: "transparent",
-                        backgroundColor: "#A5B4FC",
-                      }}
                       as="span"
-                      className=" text-5xl sm:text-5xl  bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent text-shadow-lg shadow-purple-800 font-bold"
+                      className=" text-5xl sm:text-5xl text-fuchsia-400  font-bold shadow-red-400 text-shadow-lg"
                     >
                       23
                     </Text>
@@ -201,7 +206,7 @@ export default function HoverCard({
                     <Text
                       as="p"
                       weight="light"
-                      className="text-xs font-light bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 text-transparent bg-clip-text"
+                      className="text-xs font-light text-red-200 text-shadow shadow-red-500"
                     >
                       29 - 30 Sept, 2023 • Nairobi, Kenya
                     </Text>
@@ -212,14 +217,14 @@ export default function HoverCard({
                     <Text
                       as="p"
                       weight="light"
-                      className="text-xs  bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 text-transparent bg-clip-text"
+                      className="text-xs  text-red-200 text-shadow shadow-red-500"
                     >
                       React Reimagined
                     </Text>
                     <Text
                       as="p"
                       weight="light"
-                      className="text-xs bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 text-transparent bg-clip-text flex items-center gap-2"
+                      className="text-xs  text-red-200 text-shadow shadow-red-500 flex items-center gap-2"
                     >
                       <span>Powered by</span>{" "}
                       {icon ? (
@@ -234,10 +239,19 @@ export default function HoverCard({
             </Tilt>
           </div>
         </section>
+
         {currentUserEmail === email && (
           <GradientButtons changeGradient={changeGradient} />
         )}
       </div>
+      {currentUserEmail === email && (
+        <div className="flex justify-center items-center py-4 gap-4 flex-col sm:flex-row">
+          <DownloadImage htmlToImageConvert={htmlToImageConvert} />
+          <CopyToClipboard
+            textToCopy={`https://rendercon.vercel.app/share/${username}`}
+          />
+        </div>
+      )}
     </>
   );
 }

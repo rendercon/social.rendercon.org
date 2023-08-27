@@ -1,6 +1,5 @@
 "use client";
 import { SignOutButton } from "@clerk/nextjs";
-import { User } from "@clerk/nextjs/server";
 import React from "react";
 
 export default function SignOutButtonClerk() {

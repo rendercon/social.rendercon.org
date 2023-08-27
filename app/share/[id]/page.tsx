@@ -6,12 +6,26 @@ import { useRouter } from "next/router";
 import { redirect } from "next/navigation";
 import { SignInButton } from "@clerk/nextjs";
 import { SiGithub } from "react-icons/si";
+import { Metadata } from "next";
+
+export const runtime = "edge";
 
 type Params = {
   params: {
     id: string;
   };
 };
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const user = await prisma.user.findUnique({
+    where: {
+      username: params.id,
+    },
+  });
+  return {
+    title: ` ${user?.name} Ticket to RenderCon Nairobi`,
+  };
+}
 
 export default async function page({ params }: Params) {
   const user = await prisma.user.findUnique({

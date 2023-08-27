@@ -5,6 +5,8 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { SiGithub } from "react-icons/si";
 
+export const runtime = "edge";
+
 export default async function Home() {
   const user = await currentUser();
   return (

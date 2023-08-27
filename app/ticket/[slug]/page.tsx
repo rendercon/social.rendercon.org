@@ -1,10 +1,27 @@
 import React from "react";
-import { SignOutButton, auth, clerkClient } from "@clerk/nextjs";
+import { SignOutButton, auth, clerkClient, currentUser } from "@clerk/nextjs";
 import HoverCard from "@/components/HoverCard";
 import { prisma } from "@/prisma/prisma";
 import { Heading } from "@radix-ui/themes";
 import { redirect } from "next/navigation";
 import CopyToClipboard from "@/components/Copy";
+import { Metadata } from "next";
+
+export const runtime = "edge";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const getCurrentUser = await currentUser();
+  const username = getCurrentUser?.username;
+
+  if (username) {
+    return {
+      title: ` ${username} ticket to RenderCon Nairobi`,
+    };
+  } else
+    return {
+      title: "BooBer Posts",
+    };
+}
 
 type Params = {
   params: {
@@ -45,11 +62,6 @@ export default async function page({ params }: Params) {
             selectedIcon={existingUser.icon!}
           />
         </div>
-        <div className="flex items-center justify-center">
-          <CopyToClipboard
-            textToCopy={`https://rendercon.vercel.app/share/${existingUser.username}`}
-          />
-        </div>
       </div>
     );
   }
@@ -79,9 +91,6 @@ export default async function page({ params }: Params) {
           gradient={newUser.backgroundGradient!}
           currentUserEmail={currentUserEmail}
           selectedIcon={newUser.icon!}
-        />
-        <CopyToClipboard
-          textToCopy={`https://rendercon.vercel.app/share/${newUser.username}`}
         />
       </div>
     </>
