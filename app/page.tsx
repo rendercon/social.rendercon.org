@@ -10,7 +10,7 @@ export const runtime = "edge";
 export default async function Home() {
   const user = await currentUser();
   return (
-    <section className=" min-h-screen flex md:flex-row flex-col items-center justify-center overflow-hidden    ">
+    <section className=" min-h-screen flex md:flex-row flex-col items-center  overflow-hidden    ">
       <div className="flex gap-2 flex-col md:flex-row px-4 sm:px-0 ">
         <div className="flex  flex-col justify-center gap-6 px-4">
           <h1 className="font-krona bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 text-4xl leading-[60px]  text-transparent bg-clip-text ">
