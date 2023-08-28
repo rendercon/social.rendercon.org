@@ -120,7 +120,10 @@ export default function HoverCard({
   const imageRef = useRef<HTMLDivElement>(null);
 
   const htmlToImageConvert = () => {
-    toPng(imageRef.current!, { cacheBust: false })
+    toPng(imageRef.current!, {
+      backgroundColor: "transparent",
+      cacheBust: true,
+    })
       .then((dataUrl) => {
         const link = document.createElement("a");
         link.download = `${username}-RenderCon-Ticket.png`;
@@ -190,7 +193,7 @@ export default function HoverCard({
                 <Box className=" bg-opacity-0 flex flex-col items-center   ">
                   <Flex gap="1" justify="center" align="center">
                     <Text
-                      className={`sm:text-4xl  font-bold  text-shadow shadow-purple-400 text-purple-200  text-3xl `}
+                      className={`sm:text-4xl  font-bold  text-shadow shadow-purple-400 text-purple-200  text-3xl  `}
                     >
                       RenderCon
                     </Text>
@@ -206,7 +209,7 @@ export default function HoverCard({
                     <Text
                       as="p"
                       weight="light"
-                      className="text-xs font-light text-red-200 text-shadow shadow-red-500"
+                      className="text-xs font-light text-red-200 text-shadow shadow-red-500 py-1"
                     >
                       29 - 30 Sept, 2023 • Nairobi, Kenya
                     </Text>
