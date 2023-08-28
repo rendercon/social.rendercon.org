@@ -121,7 +121,8 @@ export default function HoverCard({
 
   const htmlToImageConvert = () => {
     toPng(imageRef.current!, {
-      backgroundColor: "transparent",
+      backgroundColor: "none",
+
       cacheBust: true,
     })
       .then((dataUrl) => {
@@ -139,7 +140,7 @@ export default function HoverCard({
     <>
       <div className="flex flex-col sm:flex-row items-center py-5 sm:gap-44 ">
         <section className=" items-center w-full">
-          <div className="sm:px-6 sm:py-6 p-2 w-full  " ref={imageRef}>
+          <div className="sm:px-6 sm:py-6 p-2 w-full" ref={imageRef}>
             <Tilt
               className={`max-w-[600px] w-full lg:w-[600px] p-4  h-80 border border-gray-500 rounded-xl   ${backgroundGradient} `}
               glareMaxOpacity={0.6}
