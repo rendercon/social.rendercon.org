@@ -44,15 +44,13 @@ export default function HoverCard({
   username,
   gradient,
   currentUserEmail,
-  selectedIcon = "nextjs",
+  selectedIcon,
 }: Props) {
   const [backgroundGradient, setBackgroundGradient] = useState<string>(
-    gradient || ""
+    gradient ||
+      "bg-[radial-gradient(at_bottom,_var(--tw-gradient-stops))] from-pleb-500  to-pleb-600"
   );
   const [icon, setIcon] = useState<string>(selectedIcon || "");
-  const [headingGradient, setHeadingGradient] = useState<string>(
-    "bg-gradient-to-r from-red-200 via-red-300 to-yellow-200"
-  );
 
   const [pendingChange, setPendingChange] = useState<string | null>(null);
   const [iconChange, setIconChange] = useState<string | null>(null);
@@ -90,7 +88,7 @@ export default function HoverCard({
     // @ts-ignore
     setDebounceTimeout(newDebounceTimeout);
   };
-
+  //update bg function
   const updateBg = async (background: string, icon: string) => {
     const data = {
       backgroundGradient: background,
@@ -115,8 +113,8 @@ export default function HoverCard({
       console.error(error);
     }
   };
-  const { push } = useRouter();
 
+  //get the ref of the div
   const imageRef = useRef<HTMLDivElement>(null);
 
   const htmlToImageConvert = () => {
@@ -173,7 +171,7 @@ export default function HoverCard({
                         <Text
                           as="div"
                           size="2"
-                          className="text-shadow shadow-purple-400 text-purple-200"
+                          className=" text-purple-200 text-shadow shadow-purple-300"
                         >
                           @{username}
                         </Text>
@@ -185,7 +183,7 @@ export default function HoverCard({
                       as="p"
                       size="2"
                       weight="bold"
-                      className="text-neutral-400 font-mono "
+                      className="text-neutral-200 font-mono text-shadow shadow-purple-200 "
                     >
                       #{number.toString().padStart(4, "0")}
                     </Text>
@@ -194,14 +192,15 @@ export default function HoverCard({
                 <Box className=" bg-opacity-0 flex flex-col items-center   ">
                   <Flex gap="1" justify="center" align="center">
                     <Text
-                      className={`sm:text-4xl  font-bold  text-shadow shadow-purple-400 text-purple-200  text-3xl  `}
+                      className={`sm:text-4xl  font-bold  text-purple-200 text-shadow shadow-purple-300  text-3xl  `}
                     >
                       RenderCon
                     </Text>
 
                     <Text
                       as="span"
-                      className=" text-5xl sm:text-5xl text-fuchsia-400  font-bold shadow-red-400 text-shadow-lg"
+                      //  text-fuchsia-400  font-bold shadow-red-400 text-shadow-lg
+                      className=" text-5xl sm:text-5xl text-rendercon-wordings font-bold"
                     >
                       23
                     </Text>
@@ -210,7 +209,7 @@ export default function HoverCard({
                     <Text
                       as="p"
                       weight="light"
-                      className="text-xs font-light text-red-200 text-shadow shadow-red-500 py-1"
+                      className="text-xs font-light text-rendercon-wordings  py-1"
                     >
                       29 - 30 Sept, 2023 • Nairobi, Kenya
                     </Text>
@@ -218,17 +217,18 @@ export default function HoverCard({
                 </Box>
                 <Box>
                   <Flex justify="between">
+                    {/*   text-red-200 text-shadow shadow-red-500 */}
                     <Text
                       as="p"
                       weight="light"
-                      className="text-xs  text-red-200 text-shadow shadow-red-500"
+                      className="text-xs text-rendercon-wordings "
                     >
                       React Reimagined
                     </Text>
                     <Text
                       as="p"
                       weight="light"
-                      className="text-xs  text-red-200 text-shadow shadow-red-500 flex items-center gap-2"
+                      className="text-xs  text-rendercon-wordings flex items-center gap-2"
                     >
                       <span>Powered by</span>{" "}
                       {icon ? (
