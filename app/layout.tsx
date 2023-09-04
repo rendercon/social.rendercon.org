@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import { inter, kronaOne } from "./fonts";
 import "./globals.css";
-
+import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
@@ -26,6 +26,7 @@ export default function RootLayout({
             <Navbar />
             {children}
           </Theme>
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
