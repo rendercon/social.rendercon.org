@@ -14,7 +14,7 @@ export default function SignOutButtonClerk() {
   return (
     <div>
       <SignOutButton>
-        <button className="px-3 py-2.5 bg-gradient-to-r from-indigo-300  to-purple-500 rounded-md inline-flex items-center justify-center  gap-2 outline-none font-semibold font-krona   ">
+        <button className="px-3 py-2.5 bg-rendercon-buttons rounded-md inline-flex items-center justify-center  gap-2 outline-none font-semibold font-krona   ">
           Sign Out
         </button>
       </SignOutButton>

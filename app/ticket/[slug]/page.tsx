@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (username) {
     return {
-      title: ` ${username} ticket to RenderCon Nairobi`,
+      title: ` ${username} Social Card for RenderCon Nairobi`,
     };
   } else
     return {

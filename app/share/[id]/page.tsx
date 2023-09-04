@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     },
   });
   return {
-    title: ` ${user?.name} Ticket to RenderCon Nairobi`,
+    title: ` ${user?.name} Social Card for RenderCon Nairobi`,
   };
 }
 
@@ -56,7 +56,7 @@ export default async function page({ params }: Params) {
       />
       <div className="flex items-center justify-center">
         <SignInButton afterSignInUrl={"/"} mode="redirect">
-          <button className="px-3 py-2.5 bg-gradient-to-r from-indigo-300  to-purple-500 rounded-md inline-flex items-center justify-center sm:w-44 gap-2 outline-none font-semibold font-krona   ">
+          <button className="px-3 py-2.5 bg-rendercon-buttons rounded-md inline-flex items-center justify-center sm:w-44 gap-2 outline-none font-semibold font-krona   ">
             get yours <SiGithub />
           </button>
         </SignInButton>

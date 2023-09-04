@@ -8,6 +8,7 @@ import {
   SiRemix,
   SiVercel,
   SiVite,
+  SiReact,
 } from "react-icons/si";
 import Tilt from "react-parallax-tilt";
 import GradientButtons from "./GradientButtons";
@@ -32,7 +33,7 @@ const iconComponents: { [key: string]: React.ReactNode } = {
   gatsby: <SiGatsby className="text-2xl text-purple-400" />,
   remix: <SiRemix className="text-2xl text-white" />,
   astro: <SiAstro className="text-2xl text-white" />,
-  vercel: <SiVercel className="text-2xl text-white" />,
+  react: <SiReact className="text-2xl text-white" />,
   vite: <SiVite className="text-2xl  text-blue-200" />,
 };
 
@@ -138,7 +139,7 @@ export default function HoverCard({
     <>
       <div className="flex flex-col sm:flex-row items-center py-5 sm:gap-44 ">
         <section className=" items-center w-full">
-          <div className="sm:px-6 sm:py-6 p-2 w-full" ref={imageRef}>
+          <div className="sm:px-6 sm:py-6  w-full" ref={imageRef}>
             <Tilt
               className={`max-w-[600px] w-full lg:w-[600px] p-4  h-80 border border-gray-500 rounded-xl   ${backgroundGradient} `}
               glareMaxOpacity={0.6}
@@ -234,7 +235,7 @@ export default function HoverCard({
                       {icon ? (
                         iconComponents[icon]
                       ) : (
-                        <SiVercel className="text-white text-xl dark:text-slate-900" />
+                        <SiReact className="text-white text-xl dark:text-slate-900" />
                       )}
                     </Text>
                   </Flex>
