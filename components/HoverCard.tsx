@@ -12,7 +12,6 @@ import {
 } from "react-icons/si";
 import Tilt from "react-parallax-tilt";
 import GradientButtons from "./GradientButtons";
-import { useRouter } from "next/navigation";
 import { toPng } from "html-to-image";
 import DownloadImage from "./DownloadImage";
 import CopyToClipboard from "./Copy";

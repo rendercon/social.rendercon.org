@@ -14,11 +14,12 @@ export default function GradientButtons({
   changeGradient: (backgroundGradient: string, icon: string) => void;
 }) {
   return (
-    <div className=" mt-4 py-4 w-full">
+    <div className=" mt-4 py-4 w-full px-2">
       <h1 className="font-krona flex items-center justify-center font-bold pb-4  bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 text-transparent bg-clip-text ">
         select framework theme
       </h1>
-      <div className="flex gap-2 bg-opacity-30 items-center justify-center text-sm text-gray-400 sm:flex-col">
+
+      <div className="flex gap-2 bg-opacity-30 items-center justify-center text-sm text-gray-400 sm:flex-col flex-wrap">
         <div className="flex flex-col items-center justify-center font-krona gap-3">
           <button
             onClick={() =>
@@ -93,11 +94,11 @@ export default function GradientButtons({
           <button
             onClick={() =>
               changeGradient(
-                "bg-[radial-gradient(at_bottom,_var(--tw-gradient-stops))] from-pleb-500  to-pleb-600",
+                "bg-[radial-gradient(at_bottom,_var(--tw-gradient-stops))] from-pleb-500  via-slate-950 to-black",
                 "react"
               )
             }
-            className="px-4 py-2.5 bg-[radial-gradient(at_bottom,_var(--tw-gradient-stops))] from-pleb-500  to-pleb-600 rounded-md inline-flex items-center justify-center sm:w-24 gap-2 outline-none font-semibold font-krona"
+            className="px-3 py-2.5 bg-[radial-gradient(at_bottom,_var(--tw-gradient-stops))] from-pleb-500  via-slate-950 to-black rounded-md inline-flex items-center justify-center sm:w-24 gap-2 outline-none font-semibold font-krona"
           >
             <SiReact className="text-2xl" />
           </button>
