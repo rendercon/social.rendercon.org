@@ -48,7 +48,7 @@ export default function HoverCard({
 }: Props) {
   const [backgroundGradient, setBackgroundGradient] = useState<string>(
     gradient ||
-      "bg-[radial-gradient(at_bottom,_var(--tw-gradient-stops))] from-pleb-500  to-pleb-600"
+      "bg-[radial-gradient(at_bottom,_var(--tw-gradient-stops))] from-pleb-500  via-slate-950 to-black"
   );
   const [icon, setIcon] = useState<string>(selectedIcon || "");
 
