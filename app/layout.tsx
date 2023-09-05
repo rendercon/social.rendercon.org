@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -22,9 +23,11 @@ export default function RootLayout({
             scaling="100%"
             radius="full"
             appearance="dark"
+            className="max-w-6xl mx-auto"
           >
             <Navbar />
             {children}
+            <Footer />
           </Theme>
           <Analytics />
         </body>

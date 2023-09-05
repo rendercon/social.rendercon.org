@@ -8,8 +8,8 @@ import { SiGithub } from "react-icons/si";
 export default async function Home() {
   const user = await currentUser();
   return (
-    <main className=" min-h-screen sm:mx-auto max-w-6xl px-4  mx-0 py-10  container  ">
-      <div className="flex flex-col items-center sm:flex-row">
+    <main className="  sm:mx-auto max-w-6xl px-4  mx-0 pt-10  container   ">
+      <div className="flex flex-col items-center sm:flex-row ">
         <section className="w-full py-4">
           <h1 className="font-krona bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 text-3xl  text-transparent bg-clip-text ">
             Generate your

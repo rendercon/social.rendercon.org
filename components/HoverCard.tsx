@@ -136,7 +136,7 @@ export default function HoverCard({
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row items-center py-5 sm:gap-44 ">
+      <div className="flex flex-col sm:flex-row items-center py-5 sm:gap-44  ">
         <section className=" items-center w-full">
           <div className="sm:px-6 sm:py-6  w-full" ref={imageRef}>
             <Tilt
