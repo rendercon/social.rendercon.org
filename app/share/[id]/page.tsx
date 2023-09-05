@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     },
   });
   return {
-    title: ` ${user?.name} Social Card for RenderCon Nairobi`,
+    title: ` ${user?.username}'s Social Card for RenderCon Nairobi`,
   };
 }
 
@@ -36,7 +36,7 @@ export default async function page({ params }: Params) {
 
   return (
     <main className=" min-h-screen sm:mx-auto max-w-5xl mx-auto px-4  ">
-      <section className="flex  flex-col-reverse sm:flex-row ">
+      <section className="flex  flex-col-reverse  sm:flex-row-reverse sm:gap-20 ">
         <div className="w-full   ">
           <HoverCard
             email={user.email}
@@ -48,10 +48,10 @@ export default async function page({ params }: Params) {
             selectedIcon={user.icon!}
           />
         </div>
-        <div className="flex items-center justify-center  ">
+        <div className="flex items-center justify-center   ">
           <p className=" py-4  sm:hidden font-krona text-md whitespace-pre ">
             <span className=" bg-gradient-to-r from-red-200 via-red-300 to-yellow-200   text-transparent bg-clip-text">
-              {user.username}
+              {user.username}&rsquo;s
             </span>{" "}
             <span className=" bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent text-shadow-lg shadow-purple-800  font-bold  ">
               RenderCon
@@ -62,7 +62,7 @@ export default async function page({ params }: Params) {
           </p>
           <p className="p-6  hidden sm:block font-krona text-2xl ">
             <span className="font-krona bg-gradient-to-r from-red-200 via-red-300 to-yellow-200   text-transparent bg-clip-text">
-              {user.username}
+              {user.username}&rsquo;s
             </span>
             <br className="" />
             <span className="text-3xl bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent text-shadow-lg shadow-purple-800   ">
