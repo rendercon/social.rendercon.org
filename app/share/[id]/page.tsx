@@ -30,7 +30,6 @@ export default async function page({ params }: Params) {
     },
   });
   if (!user) redirect("/404");
-  const userBackgroundGradient = user.backgroundGradient || "";
 
   return (
     <main className=" min-h-screen sm:mx-auto max-w-5xl mx-auto px-4  ">
@@ -42,7 +41,7 @@ export default async function page({ params }: Params) {
             name={user.name!}
             number={user.number}
             username={user.username}
-            gradient={userBackgroundGradient}
+            gradient={user.backgroundGradient || ""}
             selectedIcon={user.icon!}
           />
         </div>
