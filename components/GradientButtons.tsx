@@ -98,7 +98,7 @@ export default function GradientButtons({
                 "react"
               )
             }
-            className="px-3 py-2.5 bg-[radial-gradient(at_bottom,_var(--tw-gradient-stops))] from-pleb-500  via-slate-950 to-black rounded-md inline-flex items-center justify-center sm:w-24 gap-2 outline-none font-semibold font-krona"
+            className="px-3 py-2.5 bg-[radial-gradient(at_bottom,_var(--tw-gradient-stops))] from-pleb-500 via-slate-950  to-black rounded-md inline-flex items-center justify-center sm:w-24 gap-2 outline-none font-semibold font-krona"
           >
             <SiReact className="text-2xl" />
           </button>
