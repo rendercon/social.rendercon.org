@@ -252,7 +252,7 @@ export default function HoverCard({
         <div className="flex justify-center items-center py-4 gap-4 flex-col sm:flex-row">
           <DownloadImage htmlToImageConvert={htmlToImageConvert} />
           <CopyToClipboard
-            textToCopy={`https://rendercon.vercel.app/share/${username}`}
+            textToCopy={`https://social.rendercon.org/share/${username}`}
           />
         </div>
       )}
