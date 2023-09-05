@@ -32,7 +32,7 @@ export default async function page({ params }: Params) {
   if (!user) redirect("/404");
 
   return (
-    <main className=" sm:mx-auto max-w-5xl mx-auto px-4  ">
+    <main className=" sm:mx-auto max-w-5xl mx-auto px-4  min-h-screen">
       <section className="flex  flex-col-reverse  sm:flex-row-reverse sm:gap-20 ">
         <div className="w-full   ">
           <HoverCard
