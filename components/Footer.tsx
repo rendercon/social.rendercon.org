@@ -11,25 +11,37 @@ export default function Footer() {
     <footer className="   text-zinc-500 px-4 ">
       <section className="flex items-center justify-between py-10 flex-col sm:flex-row gap-3 border-t border-zinc-500">
         <div>
-          <p>
-            crafted by{" "}
-            <Link
-              href="https://github.com/nzaih1999"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="underline font-semibold"
-            >
-              mundume.
-            </Link>{" "}
-            for{" "}
-            <Link
-              href={`https://rendercon.org`}
-              rel="noopener noreferrer"
-              className="underline font-semibold"
-            >
-              @renderconke
-            </Link>
-          </p>
+          <div className="">
+            <p>
+              crafted by{" "}
+              <Link
+                href="https://github.com/nzaih1999"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="underline font-semibold"
+              >
+                mundume.
+              </Link>{" "}
+              for{" "}
+              <Link
+                href={`https://rendercon.org`}
+                rel="noopener noreferrer"
+                className="underline font-semibold"
+              >
+                @renderconke
+              </Link>
+            </p>
+            <p>
+              get the source code{" "}
+              <Link
+                href="https://github.com/nzaih1999/pleb"
+                className="underline font-semibold"
+              >
+                here
+              </Link>
+              .
+            </p>
+          </div>
         </div>
         <div className="flex justify-center items-center gap-2">
           <Link href="https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA">
