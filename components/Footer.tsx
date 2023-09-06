@@ -25,6 +25,7 @@ export default function Footer() {
               for{" "}
               <Link
                 href={`https://rendercon.org`}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="underline font-semibold"
               >
@@ -34,8 +35,10 @@ export default function Footer() {
             <p>
               get the source code{" "}
               <Link
+                target="_blank"
                 href="https://github.com/nzaih1999/pleb"
                 className="underline font-semibold"
+                rel="noopener noreferrer"
               >
                 here
               </Link>
@@ -44,14 +47,26 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex justify-center items-center gap-2">
-          <Link href="https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA">
+          <Link
+            href="https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {" "}
             <AiOutlineYoutube className="text-2xl" />
           </Link>
-          <Link href="https://twitter.com/renderconke">
+          <Link
+            href="https://twitter.com/renderconke"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <AiOutlineTwitter className="text-2xl" />
           </Link>
-          <Link href="https://www.linkedin.com/company/renderconke/">
+          <Link
+            href="https://www.linkedin.com/company/renderconke/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <AiOutlineLinkedin className="text-2xl" />
           </Link>
         </div>
