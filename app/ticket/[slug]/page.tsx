@@ -43,7 +43,7 @@ export default async function page({ params }: Params) {
   if (existingUser) {
     const userBackgroundGradient = existingUser?.backgroundGradient || "";
     return (
-      <div className="sm:px-4 pt-4 px-1 sm:py-0 flex-col sm:flex-row  container min-h-screen">
+      <div className="sm:px-4 pt-4 px-1 sm:py-0 flex-col sm:flex-row  container min-h-max">
         <div className="">
           <h1 className="font-krona flex items-center justify-center text-2xl font-bold sm:text-3xl md:text-4xl bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent text-shadow-lg shadow-purple-800">
             Customize your Ticket

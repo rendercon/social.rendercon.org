@@ -32,7 +32,7 @@ export default async function page({ params }: Params) {
   if (!user) redirect("/404");
 
   return (
-    <main className=" sm:mx-auto max-w-5xl mx-auto px-4  min-h-screen">
+    <main className=" sm:mx-auto max-w-5xl mx-auto px-4  min-h-max">
       <section className="flex  flex-col-reverse  sm:flex-row-reverse sm:gap-20 ">
         <div className="w-full   ">
           <HoverCard
@@ -73,7 +73,7 @@ export default async function page({ params }: Params) {
         </div>
       </section>
 
-      <div className="flex items-center justify-center py-8">
+      <div className="flex items-center justify-center pt-8 pb-16">
         <SignInButton afterSignInUrl={"/"} mode="redirect">
           <button className="px-3 py-2.5 bg-rendercon-buttons rounded-md inline-flex items-center justify-center sm:w-44 gap-2 outline-none font-semibold font-krona   ">
             get yours <SiGithub />

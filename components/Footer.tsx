@@ -9,7 +9,7 @@ import {
 export default function Footer() {
   return (
     <footer className="   text-zinc-500 px-4 ">
-      <section className="flex items-center justify-between py-10 flex-col sm:flex-row gap-3">
+      <section className="flex items-center justify-between py-10 flex-col sm:flex-row gap-3 border-t border-zinc-500">
         <div>
           <p>
             crafted by{" "}
