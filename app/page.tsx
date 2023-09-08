@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { SiGithub } from "react-icons/si";
 
+//servr component
 export default async function Home() {
   const user = await currentUser();
   return (
