@@ -1,4 +1,4 @@
-import { prisma } from "@/prisma/prisma";
+import prisma from "@/prisma/prisma";
 import { auth, clerkClient } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
