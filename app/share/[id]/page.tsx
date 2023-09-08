@@ -1,6 +1,6 @@
 import React from "react";
 import HoverCard from "@/components/HoverCard";
-import { prisma } from "@/prisma/prisma";
+import prisma from "@/prisma/prisma";
 import { redirect } from "next/navigation";
 import { SignInButton } from "@clerk/nextjs";
 import { SiGithub } from "react-icons/si";
