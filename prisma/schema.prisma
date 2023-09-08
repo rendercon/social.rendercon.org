@@ -6,19 +6,33 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id                 Int      @id @default(autoincrement())
-  email              String   @unique
+  id                 Int       @id @default(autoincrement())
+  email              String    @unique
   name               String?
-  username           String   @unique
+  username           String    @unique
   imageurl           String?
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
-  number             Int      @default(autoincrement())
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  number             Int       @default(autoincrement())
   backgroundGradient String?
   icon               String?
+  speaker            Speaker[]
+}
+
+model Speaker {
+  id        Int      @id @default(autoincrement())
+  name      String
+  title     String
+  company   String
+  imageurl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    Int?
 }

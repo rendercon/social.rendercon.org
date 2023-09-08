@@ -1,7 +1,7 @@
 import React from "react";
 import { auth, clerkClient, currentUser } from "@clerk/nextjs";
 import HoverCard from "@/components/HoverCard";
-import { prisma } from "@/prisma/prisma";
+import prisma from "@/prisma/prisma";
 import { redirect } from "next/navigation";
 
 import { Metadata } from "next";
@@ -39,6 +39,7 @@ export default async function page({ params }: Params) {
       email: user.emailAddresses[0].emailAddress,
     },
   });
+
   const currentUserEmail = user.emailAddresses[0].emailAddress;
   if (existingUser) {
     const userBackgroundGradient = existingUser?.backgroundGradient || "";
