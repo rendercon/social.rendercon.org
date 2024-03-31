@@ -211,7 +211,7 @@ export default function HoverCard({
                       weight="light"
                       className="text-xs font-light text-rendercon-wordings  py-1"
                     >
-                      4 - 5 Octo, 2024 • Nairobi, Kenya
+                      4th - 5th Oct, 2024 • Nairobi, Kenya
                     </Text>
                   </Flex>
                 </Box>
