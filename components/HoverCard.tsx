@@ -202,7 +202,7 @@ export default function HoverCard({
                       //  text-fuchsia-400  font-bold shadow-red-400 text-shadow-lg
                       className=" text-5xl sm:text-5xl text-rendercon-wordings font-bold"
                     >
-                      23
+                      24
                     </Text>
                   </Flex>
                   <Flex className="">
@@ -211,7 +211,7 @@ export default function HoverCard({
                       weight="light"
                       className="text-xs font-light text-rendercon-wordings  py-1"
                     >
-                      29 - 30 Sept, 2023 • Nairobi, Kenya
+                      4 - 5 Octo, 2024 • Nairobi, Kenya
                     </Text>
                   </Flex>
                 </Box>
