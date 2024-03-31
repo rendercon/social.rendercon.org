@@ -7,8 +7,7 @@ interface HomepageAuthButtonProps {}
 
 export async function HomepageAuthButton({}: HomepageAuthButtonProps) {
   const user = await currentUser();
-//   console.log(" ===  user  === ",user)
-  return(
+    return(
   <div className="py-4" suppressHydrationWarning>
     {!user && (
       <SignInButton afterSignInUrl={"/"} mode="redirect">
