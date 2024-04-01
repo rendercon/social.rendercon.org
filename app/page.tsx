@@ -1,13 +1,12 @@
+import {
+  HomepageAuthButton,
+  HomepageAuthButtonSuspenseFallBack,
+} from "@/components/HomepageAuthButton";
 import HoverCard from "@/components/HoverCard";
-import { SignInButton, currentUser } from "@clerk/nextjs";
-
-import Link from "next/link";
-import { BsArrowRight } from "react-icons/bs";
-import { SiGithub } from "react-icons/si";
+import { Suspense } from "react";
 
 //servr component
 export default async function Home() {
-  const user = await currentUser();
   return (
     <main className="  sm:mx-auto max-w-6xl px-4  mx-0 pt-10 pb-20 container min-h-[90%]  ">
       <div className="flex flex-col items-center sm:flex-row ">
@@ -24,34 +23,14 @@ export default async function Home() {
             <br />
             Social Card
           </h1>
-          <div className="py-4">
-            {!user && (
-              <SignInButton afterSignInUrl={"/"} mode="redirect">
-                <button className="px-3 py-2.5 bg-rendercon-buttons rounded-md inline-flex items-center justify-center sm:w-44 gap-2 outline-none font-semibold font-krona  w-44  ">
-                  get yours <SiGithub />
-                </button>
-              </SignInButton>
-            )}
+          <Suspense fallback={<HomepageAuthButtonSuspenseFallBack />}>
+            <HomepageAuthButton />
+          </Suspense>
 
-            {user && (
-              <Link
-                href={`/ticket/${user?.username}`}
-                className="px-3 py-2.5 bg-rendercon-buttons rounded-md inline-flex items-center justify-center  gap-2 outline-none font-semibold font-krona  "
-              >
-                Customize your ticket <BsArrowRight />
-              </Link>
-            )}
-          </div>
         </section>
 
         <section className="w-full">
-          <HoverCard
-            email=""
-            imageurl="k"
-            name="yourname"
-            username="yourusername"
-            number={123}
-          />
+          <HoverCard email="" imageurl="" name="yourname" username="yourusername" number={123} />
         </section>
       </div>
     </main>
