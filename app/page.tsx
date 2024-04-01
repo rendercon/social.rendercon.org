@@ -26,28 +26,11 @@ export default async function Home() {
           <Suspense fallback={<HomepageAuthButtonSuspenseFallBack />}>
             <HomepageAuthButton />
           </Suspense>
-          {/* <div className="py-4">
-            {!user && (
-              <SignInButton afterSignInUrl={"/"} mode="redirect">
-                <button className="px-3 py-2.5 bg-rendercon-buttons rounded-md inline-flex items-center justify-center sm:w-44 gap-2 outline-none font-semibold font-krona  w-44  ">
-                  get yours <SiGithub />
-                </button>
-              </SignInButton>
-            )}
 
-            {user && (
-              <Link
-                href={`/ticket/${user?.username}`}
-                className="px-3 py-2.5 bg-rendercon-buttons rounded-md inline-flex items-center justify-center  gap-2 outline-none font-semibold font-krona  "
-              >
-                Customize your ticket <BsArrowRight />
-              </Link>
-            )}
-          </div> */}
         </section>
 
         <section className="w-full">
-          <HoverCard email="" imageurl="k" name="yourname" username="yourusername" number={123} />
+          <HoverCard email="" imageurl="" name="yourname" username="yourusername" number={123} />
         </section>
       </div>
     </main>
